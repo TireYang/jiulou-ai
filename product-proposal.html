@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>云膳智脑 · 餐饮酒楼AI数字化方案 — 产品方案评审稿</title>
+<style>
+  :root{
+    --ink:#1a2332; --navy:#16213a; --navy2:#1f2d4d; --gold:#c9a227; --gold2:#e6c659;
+    --red:#c0392b; --green:#1e8e5a; --bg:#f6f4ef; --card:#ffffff; --line:#e5e0d5;
+    --txt:#2b3242; --sub:#6b7280;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"PingFang SC","Microsoft YaHei",-apple-system,sans-serif;background:var(--bg);color:var(--txt);line-height:1.75}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  /* 封面 */
+  .hero{background:linear-gradient(135deg,#101a30 0%,#1f2d4d 60%,#2a3d63 100%);color:#fff;padding:90px 0 80px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,39,.28),transparent 70%)}
+  .hero .tag{display:inline-block;border:1px solid var(--gold);color:var(--gold2);padding:4px 16px;border-radius:99px;font-size:13px;letter-spacing:2px;margin-bottom:22px}
+  .hero h1{font-size:46px;font-weight:700;letter-spacing:4px;margin-bottom:14px}
+  .hero h1 em{color:var(--gold2);font-style:normal}
+  .hero .sub{font-size:18px;color:#c9d2e4;max-width:760px}
+  .hero .meta{margin-top:36px;font-size:13px;color:#8fa0c0;display:flex;gap:28px;flex-wrap:wrap}
+  /* 章节 */
+  section{padding:64px 0 8px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;border-bottom:3px solid var(--navy);padding-bottom:14px;margin-bottom:30px}
+  .sec-head .no{font-size:15px;font-weight:700;color:var(--gold);letter-spacing:1px}
+  .sec-head h2{font-size:28px;color:var(--navy);letter-spacing:2px}
+  .sec-head .en{font-size:13px;color:var(--sub);letter-spacing:1px}
+  h3{font-size:19px;color:var(--navy);margin:28px 0 12px;display:flex;align-items:center;gap:8px}
+  h3::before{content:"";width:5px;height:18px;background:var(--gold);border-radius:2px}
+  p{margin-bottom:10px}
+  /* 卡片栅格 */
+  .grid{display:grid;gap:18px}
+  .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g5{grid-template-columns:repeat(5,1fr)}
+  @media(max-width:900px){.g2,.g3,.g4,.g5{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+  .card h4{font-size:16px;color:var(--navy);margin-bottom:8px}
+  .card .role-ico{font-size:26px}
+  .card p,.card li{font-size:14px;color:#41495c}
+  .card ul{padding-left:18px;margin-top:6px}
+  .tag-pill{display:inline-block;background:#f0ebdb;color:#7a651a;border-radius:6px;font-size:12px;padding:1px 9px;margin:2px 3px 2px 0}
+  .hl{color:var(--red);font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  /* 架构图 */
+  .arch{background:linear-gradient(180deg,#131f38,#1d2c4c);border-radius:18px;padding:34px;color:#dfe6f5;margin-top:18px}
+  .layer{border:1.5px dashed rgba(201,162,39,.55);border-radius:12px;padding:16px 18px;margin-bottom:14px;position:relative}
+  .layer .lt{position:absolute;top:-13px;left:18px;background:var(--gold);color:#1a2332;font-size:12px;font-weight:700;padding:1px 12px;border-radius:99px}
+  .nodes{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+  .node{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:9px;padding:9px 15px;font-size:13.5px;text-align:center;flex:1;min-width:120px}
+  .node b{display:block;color:var(--gold2);font-size:14px;margin-bottom:2px}
+  .node.kry{background:rgba(201,162,39,.16);border-color:var(--gold)}
+  .arrow{text-align:center;color:var(--gold);font-size:18px;margin:2px 0}
+  /* 闭环流程 */
+  .loop{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:14px}
+  .loop .step{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 14px;text-align:center;position:relative}
+  .loop .step .sn{width:30px;height:30px;line-height:30px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;margin:0 auto 8px}
+  .loop .join{align-self:center;color:var(--gold);font-size:22px;padding:0 6px}
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:14px;margin-top:10px}
+  th{background:var(--navy);color:#fff;padding:11px 14px;text-align:left;font-weight:600;letter-spacing:1px}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:nth-child(even) td{background:#faf8f3}
+  /* KPI */
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;text-align:center}
+  .kpi .v{font-size:26px;font-weight:800;color:var(--navy)}
+  .kpi .v em{font-style:normal;color:var(--gold);font-size:15px}
+  .kpi .k{font-size:13px;color:var(--sub)}
+  /* 时间线 */
+  .road{position:relative;padding-left:26px;margin-top:14px}
+  .road::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;background:linear-gradient(var(--gold),var(--navy))}
+  .road .ph{position:relative;margin-bottom:20px}
+  .road .ph::before{content:"";position:absolute;left:-24px;top:6px;width:15px;height:15px;border-radius:50%;background:var(--gold);border:3px solid #fff;box-shadow:0 0 0 2px var(--gold)}
+  .road .ph b{color:var(--navy)}
+  /* 提示框 */
+  .note{background:#fdf6e3;border-left:5px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;margin:16px 0}
+  .warn{background:#fdecea;border-left:5px solid var(--red);border-radius:0 10px 10px 0;padding:14px 18px;font-size:14px;margin:16px 0}
+  footer{background:var(--navy);color:#9fb0cd;text-align:center;padding:26px;font-size:13px;margin-top:70px;letter-spacing:1px}
+  @media print{section{page-break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="hero">
+  <div class="wrap">
+    <span class="tag">产品方案评审稿 V1.0</span>
+    <h1>云膳智脑 <em>·</em> 餐饮酒楼AI数字化中台</h1>
+    <p class="sub">以客如云收银系统为数据基座，叠加 AI 中台 + 顾客小程序 + 经营驾驶舱，为酒楼打造「股东看得见、环节管得住、顾客留得下」的数字化运营体系。</p>
+    <div class="meta">
+      <span>出品：多角色联合设计（股东 / 店长 / 厨师长 / 楼面经理 / 产品经理 / 架构师）</span>
+      <span>日期：2026-10-02</span>
+      <span>状态：待评审</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- 01 背景与目标 -->
+<section id="s1">
+  <div class="sec-head"><span class="no">01</span><h2>项目背景与目标</h2><span class="en">Why &amp; What</span></div>
+  <h3>现状痛点（多角色视角）</h3>
+  <div class="grid g3">
+    <div class="card"><div class="role-ico">🧑‍💼</div><h4>股东 / 投资人</h4>
+      <ul><li>不在现场，只能等店长日报、月报，<span class="hl">信息滞后且经过人为过滤</span></li>
+      <li>不清楚每天真实流水、翻台、毛利、退菜率</li>
+      <li>无法判断问题是出在服务、菜品还是管理</li></ul></div>
+    <div class="card"><div class="role-ico">👩‍💼</div><h4>店长 / 总经理</h4>
+      <ul><li>管理靠巡场和经验，<span class="hl">缺乏数据抓手</span></li>
+      <li>前厅后厨出问题互相甩锅，责任难界定</li>
+      <li>员工绩效凭印象，激励不精准</li></ul></div>
+    <div class="card"><div class="role-ico">👨‍🍳</div><h4>厨师长</h4>
+      <ul><li>菜品口碑只有服务员口头转述，<span class="hl">差评到不了厨房</span></li>
+      <li>不知道哪些菜滞销造成备货浪费</li>
+      <li>出品快慢无记录，高峰期互相埋怨</li></ul></div>
+    <div class="card"><div class="role-ico">🤵</div><h4>楼面经理</h4>
+      <ul><li>顾客不满往往当场隐忍，事后差评到美团/大众点评才暴露</li>
+      <li>服务响应速度（催菜、加水、结账）无度量</li>
+      <li>熟客偏好无人记录，<span class="hl">老客流失无感知</span></li></ul></div>
+    <div class="card"><div class="role-ico">🙋</div><h4>顾客</h4>
+      <ul><li>有意见没渠道，或说了没下文</li>
+      <li>会员权益感知弱，没有带朋友来的动力</li>
+      <li>等位、催菜体验差</li></ul></div>
+    <div class="card"><div class="role-ico">🧮</div><h4>财务 / 采购</h4>
+      <ul><li>收银在客如云，采购库存靠手工台账，<span class="hl">两本账对不上</span></li>
+      <li>无法按菜品毛利核算，只看得总数</li>
+      <li>食材损耗、异常折扣缺乏稽核</li></ul></div>
+  </div>
+  <h3>建设目标（一句话）</h3>
+  <div class="note"><b>不换系统、不做推翻：</b>客如云继续承担收银/点餐/厨打，我们的方案作为「AI 数字化中台」<b>叠加</b>在其上 —— 从客如云取数，向各角色供数，用 AI 把「收银流水」变成「经营洞察」和「监督闭环」。</div>
+  <div class="grid g5">
+    <div class="kpi"><div class="v">T+0<em> 实时</em></div><div class="k">股东看经营</div></div>
+    <div class="kpi"><div class="v">100<em>%</em></div><div class="k">评价直达责任环节</div></div>
+    <div class="kpi"><div class="v">+15<em>%</em></div><div class="k">老带新客流目标</div></div>
+    <div class="kpi"><div class="v">-30<em>%</em></div><div class="k">食材损耗目标</div></div>
+    <div class="kpi"><div class="v">7×24</div><div class="k">AI 异常预警</div></div>
+  </div>
+</section>
+
+<!-- 02 总体架构 -->
+<section id="s2">
+  <div class="sec-head"><span class="no">02</span><h2>总体架构：客如云是地基，我们是大脑</h2><span class="en">Architecture</span></div>
+  <p>方案采用<b>「1 个基座 + 1 个中台 + N 个触端」</b>架构。客如云不被替代，而是整个方案的数据源头与交易闭环的最后一环。</p>
+  <div class="arch">
+    <div class="layer"><span class="lt">触端层 · 各角色入口</span>
+      <div class="nodes">
+        <div class="node"><b>股东驾驶舱</b>App / 微信H5</div>
+        <div class="node"><b>店长工作台</b>Pad / PC</div>
+        <div class="node"><b>厨师长工作台</b>手机 / Pad（不加装大屏）</div>
+        <div class="node"><b>楼面手环/Pad</b>服务响应</div>
+        <div class="node"><b>顾客小程序</b>评价·会员·裂变</div>
+      </div>
+    </div>
+    <div class="arrow">▲ 数据上行 · 指令下行 ▼</div>
+    <div class="layer"><span class="lt">AI 中台层 · 本方案核心</span>
+      <div class="nodes">
+        <div class="node"><b>数据中台</b>采集·清洗·指标库</div>
+        <div class="node"><b>AI 洞察引擎</b>归因分析·预测·预警</div>
+        <div class="node"><b>监督闭环引擎</b>工单·整改·复盘</div>
+        <div class="node"><b>会员营销引擎</b>标签·裂变·权益</div>
+      </div>
+    </div>
+    <div class="arrow">▲ 开放API / 数据同步 ▼</div>
+    <div class="layer"><span class="lt">基座层 · 现有系统（保留不动）</span>
+      <div class="nodes">
+        <div class="node kry"><b>客如云餐饮系统</b>收银 · 点餐 · 厨打 · 支付 · 基础会员</div>
+        <div class="node"><b>后厨厨打/传菜口</b>出品时间戳</div>
+        <div class="node"><b>监控/明厨亮灶</b>AI视觉（可选）</div>
+        <div class="node"><b>进销存台账</b>采购·库存</div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>集成要点：</b>通过客如云开放平台 API（或定期数据导出 + 中间库）获取订单明细、菜品销量、支付流水、桌台状态、会员消费记录；中台不写回交易数据，只回写「标签、评价、工单」等业务数据，确保客如云交易链路零风险。</div>
+</section>
+
+<!-- 03 核心功能 -->
+<section id="s3">
+  <div class="sec-head"><span class="no">03</span><h2>核心功能模块</h2><span class="en">Modules</span></div>
+
+  <h3>模块一：股东经营驾驶舱 —— 让老板「看得见」</h3>
+  <div class="grid g2">
+    <div class="card"><h4>📊 实时经营总览</h4>
+      <ul><li>今日流水、客单价、翻台率、上座率（数据源自客如云，分钟级刷新）</li>
+      <li>菜品销售排行 &amp; 毛利贡献榜（ABC 分析：哪些菜赚钱、哪些菜占库存）</li>
+      <li>人效（人均产出）、坪效、时段热力图</li>
+      <li>同比/环比趋势，多店对比（若连锁）</li></ul></div>
+    <div class="card"><h4>🚨 AI 异常预警（主动推送微信）</h4>
+      <ul><li>流水异常：相比历史同时段骤降 &gt;20% 自动告警</li>
+      <li>退菜/赠菜/折扣异常：单笔大额折扣、高频退菜自动标记稽核</li>
+      <li>差评风暴：30 分钟内 ≥3 条差评立即推送股东与店长</li>
+      <li>出品超时率突增、库存临期预警</li></ul></div>
+    <div class="card"><h4>🧾 每日 AI 经营简报</h4>
+      <ul><li>每晚 22:30 自动生成一页纸简报：今日亮点、异常点、顾客之声、整改跟进</li>
+      <li>股东可语音/文字追问 AI：「今天退菜为什么多？」AI 给出归因（哪道菜、哪个班次、哪个服务员经手）</li></ul></div>
+    <div class="card"><h4>🔍 穿透式追溯</h4>
+      <ul><li>从「今日毛利下降」一键钻取到：哪个菜品 → 哪几笔订单 → 哪桌 → 谁点的单 → 谁出的菜 → 顾客怎么评价</li>
+      <li>全程留痕，杜绝糊涂账</li></ul></div>
+  </div>
+
+  <h3>模块二：顾客小程序 —— 让体验「可反馈」</h3>
+  <div class="grid g2">
+    <div class="card"><h4>📝 场景化评价（餐后即刻）</h4>
+      <ul><li>结账后小程序自动推送评价（对接客如云支付完成事件）</li>
+      <li>评价分三维：<b>菜品</b>（逐道评分+标签：咸/淡/凉/分量）<b>服务</b>（响应速度/态度）<b>环境</b></li>
+      <li>评价自动绑定「当桌订单」→ 精准归因到具体菜品和服务员</li>
+      <li>差评<b>30 秒内</b>推送楼面经理，争取「离店前补救」而非「事后大众点评」</li></ul></div>
+    <div class="card"><h4>🎁 会员裂变引擎（老带新）</h4>
+      <ul><li><b>分享有礼：</b>会员分享专属邀请海报/券包，好友扫码注册即锁上下级关系</li>
+      <li><b>双向奖励：</b>新客得「首单立减券」，老客得「消费返积分/下次菜品券」；新客实际到店消费后老客奖励才到账（防刷单）</li>
+      <li><b>裂变排行榜：</b>月度「带客王」赠招牌菜，激发传播</li>
+      <li><b>沉睡唤醒：</b>AI 识别 60 天未到店会员，自动发定向优惠券</li></ul></div>
+    <div class="card"><h4>🪑 体验增强</h4>
+      <ul><li>排队等位进度、催菜按钮（直连楼面手环震动提醒）</li>
+      <li>会员画像：口味偏好、忌口、历史最爱菜 —— 到店时服务员 Pad 自动提示</li>
+      <li>生日/纪念日关怀自动营销</li></ul></div>
+    <div class="card"><h4>📣 口碑外溢</h4>
+      <ul><li>5 星评价一键引导发布至大众点评/美团（合规范围内）</li>
+      <li>UGC 晒图返积分，优质内容授权后用于酒楼官方号</li></ul></div>
+  </div>
+
+  <h3>模块三：AI 监督闭环 —— 让环节「互相监督」</h3>
+  <p>这是本方案最核心的机制设计：<b>每个环节的输出，都是下一个环节的输入和上一个环节的考卷。</b></p>
+  <div class="loop">
+    <div class="step"><div class="sn">1</div><b>顾客评价/催菜</b><br><small>小程序采集，绑定订单</small></div>
+    <div class="join">→</div>
+    <div class="step"><div class="sn">2</div><b>AI 自动归因</b><br><small>菜品问题→厨房；响应问题→前厅；口味波动→具体班次/厨师</small></div>
+    <div class="join">→</div>
+    <div class="step"><div class="sn">3</div><b>工单派发</b><br><small>自动到厨师长/楼面经理，限时整改</small></div>
+    <div class="join">→</div>
+    <div class="step"><div class="sn">4</div><b>整改回执</b><br><small>拍照/说明上传，店长验收</small></div>
+    <div class="join">→</div>
+    <div class="step"><div class="sn">5</div><b>复盘入绩效</b><br><small>闭环率、差评率计入考核与奖金</small></div>
+    <div class="join">⟳</div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><h4>🔗 前厅 ⇄ 后厨 交叉验证</h4>
+      <ul><li>「点菜时间戳（客如云）− 出品时间戳（厨打单据打印时间）」= 每道菜出品时长，超时自动记录，<b>不再靠互相甩锅</b></li>
+      <li>退菜必须选择原因（口味/异物/等太久/点错），原因决定责任归属，前厅与后厨数据互锁</li></ul></div>
+    <div class="card"><h4>👁️ 明厨亮灶 AI（可选，二期）</h4>
+      <ul><li>后厨摄像头 AI 识别：未戴厨师帽/口罩、玩手机、动火离人、鼠患迹象</li>
+      <li>前厅 AI 巡检：桌面超时未清、空台未翻台</li>
+      <li>仅做行为识别与报警，<b>不做人脸识别</b>，录像本地存储</li></ul></div>
+    <div class="card"><h4>🧾 财务稽核 AI</h4>
+      <ul><li>收银流水 vs 食材出库自动对账，差异超阈值告警</li>
+      <li>异常模式识别：高频免单、特定服务员集中折扣、退菜高峰班次</li>
+      <li>为股东提供「防跑冒滴漏」的第三只眼</li></ul></div>
+  </div>
+
+  <h3>模块四：门店运营提效 —— 让管理「有抓手」</h3>
+  <div class="grid g3">
+    <div class="card"><h4>👨‍🍳 厨师长工作台（手机 / Pad，无需加装大屏）</h4>
+      <ul><li>菜品口碑榜（真实顾客评分，按厨师/班次下钻），差评与整改工单直达厨师长手机</li>
+        <li>出品时长统计（取自厨打单据时间戳，复用现有厨打设备）、滞销菜预警 → 指导备货减量</li>
+        <li>菜品标准化：招牌菜 SOP 图文/视频随工单推送</li></ul></div>
+    <div class="card"><h4>🤵 楼面经理工作台</h4>
+      <ul><li>实时桌台状态 + 服务计时（入座多久未点菜/未结账）</li>
+        <li>催菜工单队列、差评补救任务</li>
+        <li>服务员个人看板：桌均评分、响应时长、点名表扬次数</li></ul></div>
+    <div class="card"><h4>📦 采购与库存</h4>
+      <ul><li>AI 销量预测（结合天气/节假日/预订）→ 建议采购量</li>
+        <li>库存临期预警、理论用量 vs 实际用量差异分析（抓损耗）</li>
+        <li>供应商送货质量评分</li></ul></div>
+  </div>
+</section>
+
+<!-- 04 角色价值 -->
+<section id="s4">
+  <div class="sec-head"><span class="no">04</span><h2>各角色价值一览</h2><span class="en">Value Map</span></div>
+  <table>
+    <tr><th style="width:110px">角色</th><th>核心诉求</th><th>本方案给出的能力</th><th>关键指标</th></tr>
+    <tr><td><b>股东</b></td><td>实时掌握经营、防跑冒滴漏</td><td>驾驶舱 + AI 简报 + 异常预警 + 穿透追溯</td><td>经营数据 T+0、异常 5 分钟内推送</td></tr>
+    <tr><td><b>店长</b></td><td>用数据管人管事</td><td>工作台 + 工单闭环 + 绩效看板</td><td>差评闭环率 ≥95%、工单按时完成率</td></tr>
+    <tr><td><b>厨师长</b></td><td>菜品口碑量化、减少浪费</td><td>菜品评分榜、出品时长、滞销预警</td><td>菜品差评率、出品超时率、损耗率</td></tr>
+    <tr><td><b>楼面经理</b></td><td>服务响应可度量、差评当场化解</td><td>服务计时、催菜工单、差评 30 秒提醒</td><td>差评离店前补救率、响应时长</td></tr>
+    <tr><td><b>顾客</b></td><td>意见被听见、带朋友有实惠</td><td>小程序评价、会员裂变双向奖励</td><td>评价率、裂变新客占比</td></tr>
+    <tr><td><b>财务</b></td><td>账实相符</td><td>流水-库存自动对账、异常稽核</td><td>账实差异率 &lt;0.5%</td></tr>
+  </table>
+</section>
+
+<!-- 05 客如云集成 -->
+<section id="s5">
+  <div class="sec-head"><span class="no">05</span><h2>客如云集成方案（不替代、只增强）</h2><span class="en">Integration</span></div>
+  <table>
+    <tr><th>数据对象</th><th>方向</th><th>方式</th><th>用途</th><th>频率</th></tr>
+    <tr><td>订单/账单明细</td><td>客如云 → 中台</td><td>开放平台 API（订单推送/轮询）</td><td>实时流水、翻台、菜品销量分析</td><td>准实时（分钟级）</td></tr>
+    <tr><td>菜品主数据</td><td>客如云 → 中台</td><td>API 同步</td><td>菜品毛利、口碑归因</td><td>每日</td></tr>
+    <tr><td>支付流水</td><td>客如云 → 中台</td><td>API / 对账文件</td><td>财务稽核、异常折扣监控</td><td>实时 + 日终对账</td></tr>
+    <tr><td>会员消费记录</td><td>客如云 → 中台</td><td>API 同步</td><td>会员画像、沉睡唤醒、裂变返利核算</td><td>准实时</td></tr>
+    <tr><td>桌台状态</td><td>客如云 → 中台</td><td>API 轮询</td><td>服务计时、翻台监控</td><td>分钟级</td></tr>
+    <tr><td>评价/标签/工单</td><td>中台内部</td><td>—</td><td>监督闭环（不写回客如云，隔离交易风险）</td><td>—</td></tr>
+  </table>
+  <div class="warn"><b>风险与对策：</b>客如云开放 API 的字段范围与调用配额需商务确认（属其「开放平台」合作范畴）；若 API 受限，降级方案为「日终报表导出 + 门店部署轻量采集代理」保底，实时性降为小时级，不影响驾驶舱日级分析与监督闭环主流程。<b>建议立项第一周即启动客如云开放平台商务对接。</b></div>
+</section>
+
+<!-- 06 实施路线 -->
+<section id="s6">
+  <div class="sec-head"><span class="no">06</span><h2>实施路线图（三期递进，里程碑驱动）</h2><span class="en">Roadmap</span></div>
+  <div class="note"><b>排期原则：</b>各期不设固定工期，以上一期里程碑验收通过作为进入下一期的条件；结合门店经营淡旺季与客如云商务对接进度滚动排期，允许单店先行试点、验证后再推广。</div>
+  <div class="road">
+    <div class="ph"><b>一期：数据打通 + 驾驶舱 + 评价</b><br>
+      客如云 API 对接 → 数据中台与指标库 → 股东驾驶舱 MVP（流水/翻台/菜品榜/日报）→ 顾客小程序评价上线（差评直达楼面）。<br>
+      <span class="ok">里程碑：股东手机上能看到实时经营数据；第一条差评闭环工单跑通。</span></div>
+    <div class="ph"><b>二期：监督闭环 + 会员裂变</b><br>
+      AI 归因引擎、工单闭环、前厅后厨交叉计时（复用厨打单据时间戳）、财务稽核告警 → 会员裂变（邀请有礼、沉睡唤醒）→ 厨师长/楼面工作台（手机/Pad 端）。<br>
+      <span class="ok">里程碑：差评闭环率 ≥90%；裂变新客占新客 15%。</span></div>
+    <div class="ph"><b>三期：AI 深化 + 视觉巡检</b><br>
+      销量预测与智能采购建议、AI 经营问答（股东对话式查数）、明厨亮灶 AI 视觉巡检（可选）、多店版（若扩张）。<br>
+      <span class="ok">里程碑：食材损耗率下降 30%；AI 简报替代人工日报。</span></div>
+  </div>
+</section>
+
+<!-- 07 技术与合规 -->
+<section id="s7">
+  <div class="sec-head"><span class="no">07</span><h2>技术架构与合规要点</h2><span class="en">Tech &amp; Compliance</span></div>
+  <div class="grid g2">
+    <div class="card"><h4>🛠️ 技术选型（建议）</h4>
+      <ul><li>中台后端：Java/Go 微服务 + PostgreSQL + Redis + 消息队列</li>
+      <li>数据分析：ClickHouse（实时指标）+ 定时 ETL</li>
+      <li>AI 能力：大模型 API（简报生成/归因/经营问答）+ 视觉模型（二期巡检，边缘盒本地推理）</li>
+      <li>前端：微信小程序（顾客）、H5/Flutter（股东）、响应式 Web（门店工作台）</li>
+      <li>部署：云服务器 + 门店边缘网关（断网缓存，恢复后补传）</li></ul></div>
+    <div class="card"><h4>⚖️ 合规红线</h4>
+      <ul><li>顾客数据遵循《个人信息保护法》：小程序明示授权、可注销、最小化收集</li>
+      <li>AI 视觉<b>不做员工人脸识别考勤</b>，仅行为识别；监控区域明示标识</li>
+      <li>裂变奖励不涉多级分销（只做一级邀请，规避传销红线）</li>
+      <li>引导发布外部点评平台须用户自愿，不花钱买好评</li>
+      <li>员工绩效数据仅管理层可见，避免内部矛盾</li></ul></div>
+  </div>
+  <h3>投资估算（量级参考，待详细询价）</h3>
+  <table>
+    <tr><th>项目</th><th>内容</th><th>量级</th></tr>
+    <tr><td>软件开发</td><td>中台 + 小程序 + 驾驶舱 + 工作台（三期）</td><td>一次性投入为主</td></tr>
+    <tr><td>客如云开放平台</td><td>API 接入服务费/调用费</td><td>按年，需商务询价</td></tr>
+    <tr><td>云资源 + 大模型</td><td>服务器、存储、AI 调用量</td><td>按月，随门店数增长</td></tr>
+    <tr><td>硬件（可选）</td><td>楼面手环/Pad、AI 边缘盒（厨师长用现有手机/Pad，复用厨打设备，无需厨房大屏）</td><td>按店采购</td></tr>
+  </table>
+</section>
+
+<!-- 08 评审议题 -->
+<section id="s8">
+  <div class="sec-head"><span class="no">08</span><h2>提请评审决策的议题</h2><span class="en">Open Questions</span></div>
+  <div class="grid g2">
+    <div class="card"><h4>① 范围取舍</h4><p>一期是否只做「驾驶舱+评价」两个模块，裂变放到二期？还是评价与裂变同期上线抢会员入口？</p></div>
+    <div class="card"><h4>② AI 视觉巡检是否纳入</h4><p>涉及员工接受度与合规沟通，建议二期试点一个厨房再决定推广。</p></div>
+    <div class="card"><h4>③ 客如云商务模式</h4><p>API 权限与费用是本项目最大外部依赖，需股东层面确认合作档位。</p></div>
+    <div class="card"><h4>④ 绩效挂钩力度</h4><p>差评/工单纳入奖金考核的比例，建议先「只奖不罚」试运行 1 个月再调整。</p></div>
+  </div>
+</section>
+
+</div>
+
+<footer>云膳智脑 · 餐饮酒楼AI数字化中台 — 产品方案评审稿 V1.0 · 2026-10-02 · 本文档供内部评审使用</footer>
+</body>
+</html>
