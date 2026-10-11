@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>云膳智脑 · 产品演示 Demo — 锦绣大酒楼（演示数据）</title>
+<title>云膳智脑 · 产品演示 Demo — 喜盈门大酒楼（演示数据）</title>
 <style>
   :root{
     --ink:#1a2332; --navy:#16213a; --navy2:#1f2d4d; --gold:#c9a227; --gold2:#e6c659;
@@ -282,7 +282,14 @@
     .brow .vl{width:auto;min-width:64px;font-size:11px}
     .brow{gap:7px}
     .card{padding:15px 14px;overflow-x:auto}
-    table.mtable,table.cmp{width:620px}
+    /* 表格 → 卡片式排版（字段名 + 内容逐行展示） */
+    table.mtable,table.cmp{width:100%;background:transparent;box-shadow:none;border-radius:0;font-size:13px}
+    table.mtable tr.mhdr,table.cmp tr.mhdr{display:none}
+    table.mtable tr,table.cmp tr{display:block;background:#fff;border:1px solid var(--line);border-radius:12px;margin-bottom:10px;box-shadow:0 2px 8px rgba(20,30,60,.05);overflow:hidden}
+    table.mtable td,table.cmp td{display:block;border-bottom:1px dashed var(--line);padding:7px 12px 7px 108px;position:relative;background:#fff!important;text-align:left}
+    table.mtable td:last-child,table.cmp td:last-child{border-bottom:none}
+    table.mtable td::before,table.cmp td::before{content:attr(data-h);position:absolute;left:12px;top:7px;font-size:11.5px;color:var(--sub);font-weight:700;width:88px}
+    table.cmp td:nth-child(3){background:#fffdf2!important;font-weight:600}
     .lrow{padding:10px 11px;font-size:12.5px}
     .lrow .lamt{font-size:14px}
     .ltotal .lamt{font-size:17px}
@@ -307,7 +314,7 @@
 <body>
 <!-- 顶栏 -->
 <div class="topbar">
-  <div class="logo">云膳智脑 <em>·</em> Demo<small>锦绣大酒楼 · 演示数据（非真实经营数据）</small></div>
+  <div class="logo">云膳智脑 <em>·</em> Demo<small>喜盈门大酒楼 · 演示数据（非真实经营数据）</small></div>
   <div class="tabs">
     <button class="tab active" data-v="v0">✨ 总览</button>
     <button class="tab" data-v="v1">📊 股东驾驶舱</button>
@@ -457,7 +464,7 @@
   <div class="hintbar">💡 <b>为什么抓评价？</b>不只是为了补救——每单三维评价绑定「当桌订单」，日积月累就能回答：<b>哪道菜做得好、哪道菜该淘汰、哪个时段问题最多、哪个服务员服务好</b>。差评 30 秒补救只是顺带的事。演示：给「招牌红烧肉」打 2 星并提交，看数据如何流转。</div>
   <div class="phone" id="phoneBox">
     <div class="screen">
-      <div class="phead"><div class="notch"></div><b>锦绣大酒楼</b><div class="psub">小程序 · 3 号桌 · 账单 ¥436</div></div>
+      <div class="phead"><div class="notch"></div><b>喜盈门大酒楼</b><div class="psub">小程序 · 3 号桌 · 账单 ¥436</div></div>
       <div class="ptabs">
         <div class="ptab active" data-p="pRate">📝 餐后评价</div>
         <div class="ptab" data-p="pMem">🎁 会员中心</div>
@@ -637,7 +644,7 @@
 <!-- ============ 视图6：模块清单（报价用） ============ -->
 <div class="view" id="v6">
   <div class="vtitle"><h2>功能模块清单</h2><span class="en">报价拆分依据 · 仅列模块与范围，不含价格</span></div>
-  <div class="hintbar">💡 <b>报价提示：</b>可按「期次」拆合同分阶段报价；备注标「可选」的模块建议单独报价、单独验收；硬件为按店采购项。所有软件模块均依赖「客如云开放平台对接」先行。📱 手机上表格可左右滑动查看。</div>
+  <div class="hintbar">💡 <b>报价提示：</b>可按「期次」拆合同分阶段报价；备注标「可选」的模块建议单独报价、单独验收；硬件为按店采购项。所有软件模块均依赖「客如云开放平台对接」先行。📱 手机上每行模块自动折叠为卡片，逐字段展示。</div>
 
   <div class="card" style="margin-bottom:18px">
     <h4>① 数据基座与系统集成 <span class="sub2">整个方案的地基，其他模块都依赖它</span></h4>
@@ -1014,7 +1021,7 @@ const story=[
   {v:'v4',cap:'厨师长提交回执：停用本批酱汁、红烧肉 SOP 复训，拍照留证。<b>限时 24 小时，超期自动升级店长。</b>',act:()=>{if(tickets[0])advTicket(tickets[0].id,3);}},
   {v:'v5',cap:'店长验收通过，工单闭环，<b>计入当月绩效</b>——每个环节的表现，都成了奖金的依据，不再凭印象。',act:()=>{if(tickets[0])advTicket(tickets[0].id,4);}},
   {v:'v1',cap:'而这一切，<b>股东在千里之外的手机上全程同步可见</b>——还能从「今日毛利」一键穿透到这条差评的每一个环节。',act:()=>flash('#alertFeed')},
-  {v:'v0',cap:'这个月，AI 已经为锦绣大酒楼挽回 ≈ <b>¥56,420</b>。这，就是数字化给管理带来的半径。<b>演示结束，欢迎随便点点看。</b>',act:null}
+  {v:'v0',cap:'这个月，AI 已经为喜盈门大酒楼挽回 ≈ <b>¥56,420</b>。这，就是数字化给管理带来的半径。<b>演示结束，欢迎随便点点看。</b>',act:null}
 ];
 let si=-1,storyOn=false;
 function startStory(){
@@ -1044,6 +1051,17 @@ document.addEventListener('keydown',e=>{
   if(!storyOn)return;
   if(e.key==='ArrowRight'||e.key==='Enter'||e.key===' ')storyStep(1);
   if(e.key==='Escape')endStory();
+});
+
+/* ================= 表格移动端卡片化：自动从表头取字段名 ================= */
+document.querySelectorAll('table.mtable, table.cmp').forEach(tb=>{
+  const headRow=tb.querySelector('tr');
+  const heads=[...headRow.querySelectorAll('th')].map(th=>th.textContent.trim());
+  headRow.classList.add('mhdr');
+  tb.querySelectorAll('tr').forEach((tr,i)=>{
+    if(i===0)return;
+    [...tr.children].forEach((td,j)=>td.setAttribute('data-h',heads[j]||''));
+  });
 });
 
 /* ================= 同步时钟 ================= */
