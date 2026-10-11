@@ -32,6 +32,7 @@
   .vtitle h2{font-size:23px;color:var(--navy);letter-spacing:1px}
   .vtitle .en{font-size:12px;color:var(--sub)}
   .grid{display:grid;gap:16px}
+  .grid>*{min-width:0}
   .g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
   .g23{grid-template-columns:2fr 1fr} .g32{grid-template-columns:1.1fr 2fr}
   @media(max-width:950px){.g2,.g3,.g23,.g32{grid-template-columns:1fr}}
@@ -96,7 +97,7 @@
   .ltotal .lamt{color:var(--gold2);font-size:21px}
   .ltotal .ltxt .t{color:#8fa0c0}
   /* 对比表 */
-  table.cmp{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:14px;overflow:hidden;font-size:13.5px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+  table.cmp{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:13.5px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
   table.cmp th{padding:12px 16px;text-align:left}
   table.cmp th:nth-child(1){background:#16213a;color:#fff;width:150px}
   table.cmp th:nth-child(2){background:#6b7280;color:#fff}
@@ -239,7 +240,7 @@
   .snbtn{background:var(--gold);border:none;color:#1a2332;font-weight:800;border-radius:9px;padding:8px 18px;cursor:pointer;font-family:inherit;font-size:13.5px}
   .snbtn.ghost{background:transparent;border:1px solid #3a4a72;color:#c9d2e4}
   /* 模块清单表 */
-  table.mtable{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:14px;overflow:hidden;font-size:13.5px;box-shadow:0 2px 10px rgba(20,30,60,.05);margin-bottom:18px}
+  table.mtable{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:13.5px;box-shadow:0 2px 10px rgba(20,30,60,.05);margin-bottom:18px}
   table.mtable th{background:#16213a;color:#fff;padding:11px 14px;text-align:left;font-size:13px;letter-spacing:1px}
   table.mtable td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
   table.mtable tr:nth-child(even) td{background:#faf8f3}
@@ -249,6 +250,58 @@
   .ph1{background:#d7efe1;color:#146644}.ph2{background:#dde6f5;color:#2c4a7c}.ph3{background:#f6e3b8;color:#7a651a}.phx{background:#eee;color:#777}
   .flash{animation:flashring 1.2s 3}
   @keyframes flashring{0%,100%{box-shadow:0 0 0 0 rgba(201,162,39,0)}50%{box-shadow:0 0 0 6px rgba(201,162,39,.45)}}
+  /* ====== 响应式：KPI 栅格 ====== */
+  .kpi5{grid-template-columns:repeat(5,1fr)}
+  .kpi4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:950px){.kpi5{grid-template-columns:repeat(3,1fr)}.kpi4{grid-template-columns:repeat(2,1fr)}}
+  /* ====== 移动端适配 ====== */
+  @media(max-width:640px){
+    .view{padding:16px 12px 110px}
+    #v1{padding:0 0 110px}
+    .topbar{padding:10px 12px;gap:10px}
+    .logo{font-size:16px}
+    .logo small{font-size:10px}
+    .tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%}
+    .tab{white-space:nowrap;font-size:12.5px;padding:6px 11px;flex-shrink:0}
+    .vtitle{flex-wrap:wrap}
+    .vtitle h2{font-size:19px}
+    .hero0{padding:28px 18px;border-radius:16px}
+    .hero0 h1{font-size:24px}
+    .hero0 .sub{font-size:13.5px}
+    .hero-nums{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+    .hn{padding:12px 13px}
+    .hn .v{font-size:21px}
+    .ctarow{margin-top:18px}
+    .ctarow .bigcta,.ctarow .ghostcta{width:100%;text-align:center}
+    .bigcta{font-size:14px;padding:13px 18px}
+    .dash{padding:16px 12px 30px}
+    .kpi{padding:11px 12px}
+    .kpi .v{font-size:19px}
+    .kpi5{grid-template-columns:repeat(2,1fr)}
+    .brow .nm{width:86px;font-size:12px}
+    .brow .vl{width:auto;min-width:64px;font-size:11px}
+    .brow{gap:7px}
+    .card{padding:15px 14px;overflow-x:auto}
+    table.mtable,table.cmp{width:620px}
+    .lrow{padding:10px 11px;font-size:12.5px}
+    .lrow .lamt{font-size:14px}
+    .ltotal .lamt{font-size:17px}
+    .phone{width:min(378px,96vw);padding:8px}
+    .screen{height:min(680px,76vh)}
+    .tblgrid{grid-template-columns:repeat(2,1fr)}
+    .tbl{padding:9px 6px;font-size:12px}
+    .ticket .tt{font-size:13px}
+    .sg{font-size:9px}
+    .qa{flex-direction:column}
+    .qa button{padding:9px}
+    #toasts{left:12px;right:12px;max-width:none}
+    #drawer{left:12px;right:12px;width:auto}
+    #storybar{width:94%;padding:12px 14px;bottom:12px}
+    #storybar .scap{font-size:13.5px;min-height:0}
+    .snbtn{padding:7px 12px;font-size:12.5px}
+    .mbox{padding:18px 16px}
+    .syncbar{font-size:11.5px}
+  }
 </style>
 </head>
 <body>
@@ -329,7 +382,7 @@
       <div class="vtitle"><h2>股东经营驾驶舱</h2><span class="livebadge"><i></i>LIVE</span><span class="en">千里之外的办公室，比分店经理更早知道现场</span></div>
       <div class="syncbar"><span class="dot"></span>数据来自客如云 · 分钟级同步 · 最后更新 <b id="syncTime" style="color:#e6c659">21:47:32</b> · 今日已自动稽核流水 <b id="auditCnt" style="color:#e6c659">1,286</b> 笔 · 无异常</div>
 
-      <div class="grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:16px" id="kpiRow"></div>
+      <div class="grid kpi5" style="margin-bottom:16px" id="kpiRow"></div>
 
       <div class="grid g23">
         <div>
@@ -560,7 +613,7 @@
   </div>
   <div class="card">
     <h4>📊 本月闭环运行数据</h4>
-    <div class="grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="grid kpi4">
       <div class="kpi"><div class="k">差评总数</div><div class="v">47</div><div class="d down">环比 -18%（越来越少）</div></div>
       <div class="kpi"><div class="k">差评闭环率</div><div class="v up">96<em>%</em></div><div class="d">目标 ≥95%</div></div>
       <div class="kpi"><div class="k">离店前补救成功</div><div class="v up">39<em> 条</em></div><div class="d">≈ 保住 ¥18,600 流水</div></div>
@@ -584,7 +637,7 @@
 <!-- ============ 视图6：模块清单（报价用） ============ -->
 <div class="view" id="v6">
   <div class="vtitle"><h2>功能模块清单</h2><span class="en">报价拆分依据 · 仅列模块与范围，不含价格</span></div>
-  <div class="hintbar">💡 <b>报价提示：</b>可按「期次」拆合同分阶段报价；备注标「可选」的模块建议单独报价、单独验收；硬件为按店采购项。所有软件模块均依赖「客如云开放平台对接」先行。</div>
+  <div class="hintbar">💡 <b>报价提示：</b>可按「期次」拆合同分阶段报价；备注标「可选」的模块建议单独报价、单独验收；硬件为按店采购项。所有软件模块均依赖「客如云开放平台对接」先行。📱 手机上表格可左右滑动查看。</div>
 
   <div class="card" style="margin-bottom:18px">
     <h4>① 数据基座与系统集成 <span class="sub2">整个方案的地基，其他模块都依赖它</span></h4>
@@ -699,7 +752,7 @@ document.querySelectorAll('.ptab').forEach(t=>t.onclick=()=>{
 function countUp(el,target,dur,fmt){
   if(!el)return; fmt=fmt||(v=>Math.round(v).toLocaleString());
   const t0=performance.now();
-  (function tick(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);
+  (function tick(t){const p=Math.max(0,Math.min(1,(t-t0)/dur)),e=1-Math.pow(1-p,3);
     el.textContent=fmt(target*e); if(p<1)requestAnimationFrame(tick);})(t0);
 }
 let dashCounted=false;
