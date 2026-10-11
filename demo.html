@@ -644,79 +644,60 @@
 <!-- ============ 视图6：模块清单（报价用） ============ -->
 <div class="view" id="v6">
   <div class="vtitle"><h2>功能模块清单</h2><span class="en">报价拆分依据 · 仅列模块与范围，不含价格</span></div>
-  <div class="hintbar">💡 <b>报价提示：</b>可按「期次」拆合同分阶段报价；备注标「可选」的模块建议单独报价、单独验收；硬件为按店采购项。所有软件模块均依赖「客如云开放平台对接」先行。📱 手机上每行模块自动折叠为卡片，逐字段展示。</div>
+  <div class="hintbar">💡 <b>报价提示：</b>按「期次」分阶段报价；「可选项」建议单独报价、单独验收。所有软件模块均依赖一期「客如云开放平台对接」先行。📱 手机上每行模块自动折叠为卡片，逐字段展示。</div>
 
   <div class="card" style="margin-bottom:18px">
-    <h4>① 数据基座与系统集成 <span class="sub2">整个方案的地基，其他模块都依赖它</span></h4>
+    <h4><span class="ph-pill ph1">一期</span> 数据打通 + 股东驾驶舱 + 顾客评价 <span class="sub2">里程碑：股东手机看到实时经营数据，第一条差评工单跑通</span></h4>
     <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>客如云开放平台对接</b></td><td>订单/账单明细、支付流水准实时同步（分钟级）</td><td>—</td><td><span class="ph-pill ph1">一期</span></td><td>最大外部依赖，需商务确认 API 权限与配额</td></tr>
-      <tr><td><b>主数据同步</b></td><td>菜品、会员消费记录、桌台状态同步</td><td>—</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>数据中台与指标库</b></td><td>数据采集、清洗、经营指标体系（流水/毛利/翻台/人效等）</td><td>—</td><td><span class="ph-pill ph1">一期</span></td><td>所有报表与 AI 的数据来源</td></tr>
-      <tr><td><b>降级采集代理</b></td><td>API 受限时：门店部署轻量采集代理 + 日终报表导入</td><td>—</td><td><span class="ph-pill phx">可选</span></td><td>保底方案，实时性降为小时级</td></tr>
-      <tr><td><b>门店边缘网关</b></td><td>断网缓存、恢复后补传</td><td>—</td><td><span class="ph-pill phx">可选</span></td><td>网络不稳定门店建议配置</td></tr>
+      <tr><th style="width:150px">子模块</th><th style="width:96px">所属系统</th><th>功能要点</th><th style="width:110px">触端 / 角色</th><th style="width:180px">备注</th></tr>
+      <tr><td><b>客如云开放平台对接</b></td><td>数据基座</td><td>订单/账单明细、支付流水准实时同步（分钟级）</td><td>—</td><td>最大外部依赖，需商务确认 API 权限与配额</td></tr>
+      <tr><td><b>主数据同步</b></td><td>数据基座</td><td>菜品、会员消费记录、桌台状态同步</td><td>—</td><td></td></tr>
+      <tr><td><b>数据中台与指标库</b></td><td>数据基座</td><td>数据采集、清洗、经营指标体系（流水/毛利/翻台/人效等）</td><td>—</td><td>所有报表与 AI 的数据来源</td></tr>
+      <tr><td><b>中台后端</b></td><td>基础设施</td><td>微服务、数据库、缓存、消息队列、权限与审计日志</td><td>—</td><td></td></tr>
+      <tr><td><b>实时数仓</b></td><td>基础设施</td><td>实时指标计算（ClickHouse）+ 定时 ETL</td><td>—</td><td></td></tr>
+      <tr><td><b>实时经营总览</b></td><td>股东驾驶舱</td><td>流水、客单价、翻台率、上座率、人效坪效、时段热力、多店对比</td><td>股东</td><td>App / 微信 H5</td></tr>
+      <tr><td><b>菜品 ABC 分析</b></td><td>股东驾驶舱</td><td>销售排行、毛利贡献榜、库存占用分析</td><td>股东/店长</td><td></td></tr>
+      <tr><td><b>AI 异常预警</b></td><td>股东驾驶舱</td><td>流水骤降、退菜/折扣异常、差评风暴、出品超时、库存临期，主动推送微信</td><td>股东/店长</td><td></td></tr>
+      <tr><td><b>穿透式追溯</b></td><td>股东驾驶舱</td><td>从指标一键钻取到菜品→订单→桌台→服务员→厨师→顾客评价</td><td>股东</td><td></td></tr>
+      <tr><td><b>场景化评价</b></td><td>顾客小程序</td><td>结账触发、菜品/服务/环境三维评分、绑定当桌订单、差评 30 秒推送楼面</td><td>顾客</td><td>对接客如云支付完成事件；评价数据是后续所有分析的数据源</td></tr>
     </table>
 
-    <h4>② 股东经营驾驶舱 <span class="sub2">App / 微信 H5</span></h4>
+    <h4><span class="ph-pill ph2">二期</span> 监督闭环 + 会员裂变 + 门店工作台 <span class="sub2">里程碑：差评闭环率 ≥90%，裂变新客占新客 15%</span></h4>
     <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>实时经营总览</b></td><td>流水、客单价、翻台率、上座率、人效坪效、时段热力、多店对比</td><td>股东</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>菜品 ABC 分析</b></td><td>销售排行、毛利贡献榜、库存占用分析</td><td>股东/店长</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>AI 异常预警</b></td><td>流水骤降、退菜/折扣异常、差评风暴、出品超时、库存临期，主动推送微信</td><td>股东/店长</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>穿透式追溯</b></td><td>从指标一键钻取到菜品→订单→桌台→服务员→厨师→顾客评价</td><td>股东</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>AI 经营简报</b></td><td>每日 22:30 一页纸简报：亮点、异常、顾客之声、整改跟进</td><td>股东/店长</td><td><span class="ph-pill ph2">二期</span></td><td>依赖大模型调用量</td></tr>
-      <tr><td><b>AI 经营问答</b></td><td>股东对话式查数与归因追问</td><td>股东</td><td><span class="ph-pill ph3">三期</span></td><td>依赖大模型调用量</td></tr>
-      <tr><td><b>财务稽核 AI</b></td><td>流水−出库自动对账、异常折扣/免单/退菜模式识别</td><td>股东/财务</td><td><span class="ph-pill ph2">二期</span></td><td>依赖进销存台账数据质量</td></tr>
+      <tr><th style="width:150px">子模块</th><th style="width:96px">所属系统</th><th>功能要点</th><th style="width:110px">触端 / 角色</th><th style="width:180px">备注</th></tr>
+      <tr><td><b>AI 归因引擎</b></td><td>监督闭环</td><td>差评/退菜自动归因到菜品、班次、厨师、服务员</td><td>—</td><td></td></tr>
+      <tr><td><b>工单系统</b></td><td>监督闭环</td><td>自动派发、限时整改、拍照回执、店长验收、超期自动升级</td><td>厨师长/楼面/店长</td><td></td></tr>
+      <tr><td><b>前厅后厨交叉计时</b></td><td>监督闭环</td><td>点菜时间戳 − 厨打时间戳 = 出品时长，超时自动记录</td><td>—</td><td>复用现有厨打设备，零新增硬件</td></tr>
+      <tr><td><b>绩效看板</b></td><td>监督闭环</td><td>闭环率、差评率、响应时长计入考核与奖金</td><td>店长/股东</td><td>建议先「只奖不罚」试运行</td></tr>
+      <tr><td><b>评价数据分析</b></td><td>监督闭环</td><td>菜品口碑归因（厨师/班次）、问题时段分布、服务员水平分析、标签聚类与趋势</td><td>厨师长/楼面/店长/股东</td><td>监管厨房与服务水平的核心能力</td></tr>
+      <tr><td><b>财务稽核 AI</b></td><td>股东驾驶舱</td><td>流水−出库自动对账、异常折扣/免单/退菜模式识别</td><td>股东/财务</td><td>依赖进销存台账数据质量</td></tr>
+      <tr><td><b>AI 经营简报</b></td><td>股东驾驶舱</td><td>每日 22:30 一页纸简报：亮点、异常、顾客之声、整改跟进</td><td>股东/店长</td><td>依赖大模型调用量</td></tr>
+      <tr><td><b>大模型能力接入</b></td><td>基础设施</td><td>简报生成、归因分析、经营问答的模型调用层</td><td>—</td><td>按调用量产生持续费用</td></tr>
+      <tr><td><b>会员体系与画像</b></td><td>顾客小程序</td><td>等级/积分、口味偏好与忌口、到店时服务员 Pad 提示</td><td>顾客/楼面</td><td>与客如云基础会员打通</td></tr>
+      <tr><td><b>会员裂变引擎</b></td><td>顾客小程序</td><td>邀请有礼双向奖励、裂变排行榜、沉睡唤醒定向券</td><td>顾客</td><td>仅一级邀请，规避分销红线</td></tr>
+      <tr><td><b>体验增强</b></td><td>顾客小程序</td><td>排队等位进度、催菜按钮（联动楼面提醒）、生日/纪念日关怀</td><td>顾客</td><td></td></tr>
+      <tr><td><b>楼面经理工作台</b></td><td>门店工作台</td><td>实时桌台状态、服务计时、催菜工单队列、差评补救任务</td><td>楼面经理</td><td>Pad 端</td></tr>
+      <tr><td><b>服务员个人看板</b></td><td>门店工作台</td><td>桌均评分、响应时长、点名表扬次数</td><td>楼面/店长</td><td></td></tr>
+      <tr><td><b>厨师长工作台</b></td><td>门店工作台</td><td>菜品口碑榜（按厨师/班次下钻）、出品时长统计、滞销预警、SOP 推送</td><td>厨师长</td><td>手机/Pad 端，不加装大屏</td></tr>
     </table>
 
-    <h4>③ 顾客小程序 <span class="sub2">微信小程序</span></h4>
+    <h4><span class="ph-pill ph3">三期</span> AI 深化 + 扩展 <span class="sub2">里程碑：食材损耗率下降 30%，AI 简报替代人工日报</span></h4>
     <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>场景化评价</b></td><td>结账触发、菜品/服务/环境三维评分、绑定当桌订单、差评 30 秒推送楼面</td><td>顾客</td><td><span class="ph-pill ph1">一期</span></td><td>对接客如云支付完成事件；评价数据是后续所有分析的数据源</td></tr>
-      <tr><td><b>评价数据分析</b></td><td>菜品口碑归因（厨师/班次）、问题时段分布、服务员水平分析、标签聚类与趋势</td><td>厨师长/楼面/店长/股东</td><td><span class="ph-pill ph2">二期</span></td><td>监管厨房与服务水平的核心能力</td></tr>
-      <tr><td><b>会员体系与画像</b></td><td>等级/积分、口味偏好与忌口、到店时服务员 Pad 提示</td><td>顾客/楼面</td><td><span class="ph-pill ph2">二期</span></td><td>与客如云基础会员打通</td></tr>
-      <tr><td><b>会员裂变引擎</b></td><td>邀请有礼双向奖励、裂变排行榜、沉睡唤醒定向券</td><td>顾客</td><td><span class="ph-pill ph2">二期</span></td><td>仅一级邀请，规避分销红线</td></tr>
-      <tr><td><b>体验增强</b></td><td>排队等位进度、催菜按钮（联动楼面提醒）、生日/纪念日关怀</td><td>顾客</td><td><span class="ph-pill ph2">二期</span></td><td></td></tr>
-      <tr><td><b>口碑外溢</b></td><td>好评一键引导至大众点评/美团、UGC 晒图返积分</td><td>顾客</td><td><span class="ph-pill ph3">三期</span></td><td>须用户自愿，合规约束</td></tr>
+      <tr><th style="width:150px">子模块</th><th style="width:96px">所属系统</th><th>功能要点</th><th style="width:110px">触端 / 角色</th><th style="width:180px">备注</th></tr>
+      <tr><td><b>AI 经营问答</b></td><td>股东驾驶舱</td><td>股东对话式查数与归因追问</td><td>股东</td><td>依赖大模型调用量</td></tr>
+      <tr><td><b>采购与库存助手</b></td><td>门店工作台</td><td>AI 销量预测与采购建议、临期预警、理论 vs 实际用量差异、供应商评分</td><td>厨师长/采购/财务</td><td>依赖进销存台账录入规范</td></tr>
+      <tr><td><b>口碑外溢</b></td><td>顾客小程序</td><td>好评一键引导至大众点评/美团、UGC 晒图返积分</td><td>顾客</td><td>须用户自愿，合规约束</td></tr>
+      <tr><td><b>多店版</b></td><td>基础设施</td><td>多门店管理、跨店对比、总部视图</td><td>股东/总部</td><td>若有扩张计划</td></tr>
     </table>
 
-    <h4>④ AI 监督闭环 <span class="sub2">本方案核心机制</span></h4>
+    <h4><span class="ph-pill phx">可选</span> 按需启用项 <span class="sub2">建议单独报价、单独验收</span></h4>
     <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>AI 归因引擎</b></td><td>差评/退菜自动归因到菜品、班次、厨师、服务员</td><td>—</td><td><span class="ph-pill ph2">二期</span></td><td></td></tr>
-      <tr><td><b>工单系统</b></td><td>自动派发、限时整改、拍照回执、店长验收、超期自动升级</td><td>厨师长/楼面/店长</td><td><span class="ph-pill ph2">二期</span></td><td></td></tr>
-      <tr><td><b>前厅后厨交叉计时</b></td><td>点菜时间戳 − 厨打时间戳 = 出品时长，超时自动记录</td><td>—</td><td><span class="ph-pill ph2">二期</span></td><td>复用现有厨打设备，零新增硬件</td></tr>
-      <tr><td><b>绩效看板</b></td><td>闭环率、差评率、响应时长计入考核与奖金</td><td>店长/股东</td><td><span class="ph-pill ph2">二期</span></td><td>建议先「只奖不罚」试运行</td></tr>
-      <tr><td><b>明厨亮灶 AI 视觉巡检</b></td><td>行为识别：未戴帽/口罩、玩手机、动火离人；前厅空台巡检</td><td>店长/股东</td><td><span class="ph-pill phx">可选</span></td><td>三期试点；不做人脸识别；需摄像头与边缘盒</td></tr>
-    </table>
-
-    <h4>⑤ 门店工作台 <span class="sub2">Pad / 手机端，无厨房大屏</span></h4>
-    <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>楼面经理工作台</b></td><td>实时桌台状态、服务计时、催菜工单队列、差评补救任务</td><td>楼面经理</td><td><span class="ph-pill ph2">二期</span></td><td>Pad 端</td></tr>
-      <tr><td><b>服务员个人看板</b></td><td>桌均评分、响应时长、点名表扬次数</td><td>楼面/店长</td><td><span class="ph-pill ph2">二期</span></td><td></td></tr>
-      <tr><td><b>厨师长工作台</b></td><td>菜品口碑榜（按厨师/班次下钻）、出品时长统计、滞销预警、SOP 推送</td><td>厨师长</td><td><span class="ph-pill ph2">二期</span></td><td>手机/Pad 端，不加装大屏</td></tr>
-      <tr><td><b>采购与库存助手</b></td><td>AI 销量预测与采购建议、临期预警、理论 vs 实际用量差异、供应商评分</td><td>厨师长/采购/财务</td><td><span class="ph-pill ph3">三期</span></td><td>依赖进销存台账录入规范</td></tr>
-    </table>
-
-    <h4>⑥ 平台基础设施与扩展 <span class="sub2">贯穿各期</span></h4>
-    <table class="mtable">
-      <tr><th style="width:180px">子模块</th><th>功能要点</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>中台后端</b></td><td>微服务、数据库、缓存、消息队列、权限与审计日志</td><td>—</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>实时数仓</b></td><td>实时指标计算（ClickHouse）+ 定时 ETL</td><td>—</td><td><span class="ph-pill ph1">一期</span></td><td></td></tr>
-      <tr><td><b>大模型能力接入</b></td><td>简报生成、归因分析、经营问答</td><td>—</td><td><span class="ph-pill ph2">二期</span></td><td>按调用量产生持续费用</td></tr>
-      <tr><td><b>多店版</b></td><td>多门店管理、跨店对比、总部视图</td><td>股东/总部</td><td><span class="ph-pill ph3">三期</span></td><td>若有扩张计划</td></tr>
-    </table>
-
-    <h4>⑦ 硬件（可选，按店采购） <span class="sub2">不含厨房大屏</span></h4>
-    <table class="mtable">
-      <tr><th style="width:180px">硬件项</th><th>用途</th><th style="width:120px">触端 / 角色</th><th style="width:70px">期次</th><th style="width:200px">备注</th></tr>
-      <tr><td><b>楼面手环 / Pad</b></td><td>催菜震动提醒、差评补救任务接收</td><td>楼面</td><td><span class="ph-pill phx">可选</span></td><td>可用员工自有手机替代</td></tr>
-      <tr><td><b>AI 视觉边缘盒</b></td><td>明厨亮灶行为识别本地推理</td><td>—</td><td><span class="ph-pill phx">可选</span></td><td>仅视觉巡检启用时需要</td></tr>
-      <tr><td><b>门店边缘网关</b></td><td>断网缓存补传</td><td>—</td><td><span class="ph-pill phx">可选</span></td><td>同 ①</td></tr>
+      <tr><th style="width:150px">子模块</th><th style="width:96px">所属系统</th><th>功能要点</th><th style="width:110px">触端 / 角色</th><th style="width:180px">备注</th></tr>
+      <tr><td><b>降级采集代理</b></td><td>数据基座</td><td>API 受限时：门店部署轻量采集代理 + 日终报表导入</td><td>—</td><td>保底方案，实时性降为小时级</td></tr>
+      <tr><td><b>明厨亮灶 AI 视觉巡检</b></td><td>监督闭环</td><td>行为识别：未戴帽/口罩、玩手机、动火离人；前厅空台巡检</td><td>店长/股东</td><td>三期试点；不做人脸识别；需摄像头与边缘盒</td></tr>
     </table>
   </div>
-  <div class="hintbar">📌 <b>说明：</b>厨师长使用现有手机/Pad，出品计时复用现有厨打设备，<b>方案不含厨房大屏及任何厨房新增显示设备</b>；客如云开放平台服务费/调用费、云资源与大模型调用量为第三方/持续性费用，建议单列。</div>
+  <div class="hintbar">📌 <b>说明：</b>本清单仅含软件模块。厨师长使用现有手机/Pad，出品计时复用现有厨打设备，<b>方案不含厨房大屏及任何厨房新增显示设备</b>；客如云开放平台服务费/调用费、云资源与大模型调用量为第三方/持续性费用，建议单列。</div>
 </div>
 
 <!-- 穿透追溯弹层 -->
